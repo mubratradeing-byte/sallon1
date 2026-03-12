@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOIR BLADE | Premium Barbershop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 300: '#f5d78e', 400: '#f0c040', 500: '#c9a227', 600: '#a07d1c', 700: '#7a5c10' },
+            charcoal: { 800: '#1a1a1a', 900: '#111111' },
+            obsidian: '#0a0a0a',
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-obsidian text-white font-sans overflow-x-hidden">
+
+  <!-- ══════════════════════════════════════ NAVIGATION ══════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 border border-gold-500 flex items-center justify-center transform group-hover:rotate-45 transition-transform duration-300">
+            <span class="text-gold-500 text-xs font-display font-bold transform group-hover:-rotate-45 transition-transform duration-300">NB</span>
+          </div>
+          <span class="font-display text-xl tracking-[0.2em] text-white">NOIR<span class="text-gold-500"> BLADE</span></span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#services" class="nav-link text-xs tracking-[0.15em] uppercase text-gray-300 hover:text-gold-400 transition-colors">Services</a>
+          <a href="#barbers" class="nav-link text-xs tracking-[0.15em] uppercase text-gray-300 hover:text-gold-400 transition-colors">Our Barbers</a>
+          <a href="#gallery" class="nav-link text-xs tracking-[0.15em] uppercase text-gray-300 hover:text-gold-400 transition-colors">Gallery</a>
+          <a href="#reviews" class="nav-link text-xs tracking-[0.15em] uppercase text-gray-300 hover:text-gold-400 transition-colors">Reviews</a>
+          <a href="#contact" class="nav-link text-xs tracking-[0.15em] uppercase text-gray-300 hover:text-gold-400 transition-colors">Contact</a>
+          <button id="nav-admin-btn" onclick="showAdminLogin()" class="text-xs tracking-[0.15em] uppercase text-gray-500 hover:text-gold-400 transition-colors border border-gray-700 hover:border-gold-500 px-4 py-2">Admin</button>
+          <a href="#booking" class="btn-gold text-xs tracking-[0.15em] uppercase px-6 py-3">Book Now</a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="hamburger" onclick="toggleMenu()" class="lg:hidden flex flex-col gap-1.5 p-2 z-50 relative">
+          <span class="ham-line block w-6 h-0.5 bg-gold-400 transition-all duration-300"></span>
+          <span class="ham-line block w-6 h-0.5 bg-gold-400 transition-all duration-300"></span>
+          <span class="ham-line block w-4 h-0.5 bg-gold-400 transition-all duration-300 self-end"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 bg-obsidian/98 z-40 flex flex-col items-center justify-center gap-8">
+      <a href="#services" onclick="toggleMenu()" class="font-display text-2xl tracking-[0.3em] text-white hover:text-gold-400 transition-colors">SERVICES</a>
+      <a href="#barbers" onclick="toggleMenu()" class="font-display text-2xl tracking-[0.3em] text-white hover:text-gold-400 transition-colors">BARBERS</a>
+      <a href="#gallery" onclick="toggleMenu()" class="font-display text-2xl tracking-[0.3em] text-white hover:text-gold-400 transition-colors">GALLERY</a>
+      <a href="#reviews" onclick="toggleMenu()" class="font-display text-2xl tracking-[0.3em] text-white hover:text-gold-400 transition-colors">REVIEWS</a>
+      <a href="#contact" onclick="toggleMenu()" class="font-display text-2xl tracking-[0.3em] text-white hover:text-gold-400 transition-colors">CONTACT</a>
+      <a href="#booking" onclick="toggleMenu()" class="btn-gold text-sm tracking-[0.2em] uppercase px-10 py-4 mt-4">BOOK NOW</a>
+      <button onclick="toggleMenu(); showAdminLogin();" class="text-xs tracking-[0.2em] text-gray-500 hover:text-gold-400 uppercase">Admin Portal</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════ HERO ══════════════════════════════════════ -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat hero-bg"></div>
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-obsidian/80 via-obsidian/60 to-obsidian"></div>
+    <!-- Gold diagonal accent -->
+    <div class="absolute top-0 right-0 w-1/3 h-full opacity-10" style="background: linear-gradient(135deg, transparent 50%, #c9a227 50%)"></div>
+
+    <div class="relative z-10 text-center max-w-5xl mx-auto px-6 hero-content">
+      <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-6 animate-fade-in-up" style="animation-delay:0.2s">Est. 2015 · Premium Grooming</p>
+      <h1 class="font-display text-6xl sm:text-8xl lg:text-[9rem] leading-none tracking-tight mb-6 animate-fade-in-up" style="animation-delay:0.4s">
+        NOIR<br><span class="text-gold-400">BLADE</span>
+      </h1>
+      <p class="font-serif text-xl sm:text-2xl text-gray-300 italic mb-10 animate-fade-in-up" style="animation-delay:0.6s">Where Craft Meets Luxury</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay:0.8s">
+        <a href="#booking" class="btn-gold text-sm tracking-[0.2em] uppercase px-10 py-4">Reserve Your Chair</a>
+        <a href="#services" class="btn-outline text-sm tracking-[0.2em] uppercase px-10 py-4">Explore Services</a>
+      </div>
+      <div class="flex justify-center gap-12 mt-16 animate-fade-in-up" style="animation-delay:1s">
+        <div class="text-center">
+          <p class="font-display text-3xl text-gold-400">2K+</p>
+          <p class="text-xs text-gray-400 tracking-[0.2em] uppercase mt-1">Monthly Cuts</p>
+        </div>
+        <div class="w-px bg-gold-500/30"></div>
+        <div class="text-center">
+          <p class="font-display text-3xl text-gold-400">8</p>
+          <p class="text-xs text-gray-400 tracking-[0.2em] uppercase mt-1">Master Barbers</p>
+        </div>
+        <div class="w-px bg-gold-500/30"></div>
+        <div class="text-center">
+          <p class="font-display text-3xl text-gold-400">10+</p>
+          <p class="text-xs text-gray-400 tracking-[0.2em] uppercase mt-1">Years Legacy</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <span class="text-xs text-gray-500 tracking-[0.3em] uppercase">Scroll</span>
+      <div class="w-px h-8 bg-gradient-to-b from-gold-500 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ SERVICES ══════════════════════════════════════ -->
+  <section id="services" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-3">What We Offer</p>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl">Our Services</h2>
+        <div class="gold-divider mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-500/10">
+        <!-- Service cards generated by JS -->
+      </div>
+
+      <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-500/10">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ BARBERS ══════════════════════════════════════ -->
+  <section id="barbers" class="py-24 bg-charcoal-900/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-3">The Craftsmen</p>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl">Our Barbers</h2>
+        <div class="gold-divider mx-auto mt-4"></div>
+      </div>
+      <div id="barbers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ BARBER MODAL ══════════════════════════════════════ -->
+  <div id="barber-modal" class="hidden fixed inset-0 z-50 bg-obsidian/95 overflow-y-auto">
+    <div class="max-w-4xl mx-auto px-4 py-20">
+      <button onclick="closeBarberModal()" class="fixed top-6 right-6 w-10 h-10 border border-gold-500/50 flex items-center justify-center text-gold-400 hover:bg-gold-500/10 transition-colors z-50">✕</button>
+      <div id="barber-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ GALLERY ══════════════════════════════════════ -->
+  <section id="gallery" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-3">The Work</p>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl">Gallery</h2>
+        <div class="gold-divider mx-auto mt-4"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <!-- Gallery items are decorative placeholders using CSS art -->
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden"><div class="gallery-art art-1"></div></div>
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden col-span-2 row-span-2"><div class="gallery-art art-2"></div></div>
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden"><div class="gallery-art art-3"></div></div>
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden"><div class="gallery-art art-4"></div></div>
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden"><div class="gallery-art art-1"></div></div>
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden"><div class="gallery-art art-3"></div></div>
+        <div class="gallery-item aspect-square bg-charcoal-800 overflow-hidden col-span-2"><div class="gallery-art art-2"></div></div>
+      </div>
+      <!-- Social proof -->
+      <div class="flex justify-center gap-8 mt-12">
+        <a href="#" class="social-link flex items-center gap-3 text-gray-400 hover:text-gold-400 transition-colors group">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span class="text-xs tracking-[0.2em] uppercase">Instagram</span>
+        </a>
+        <a href="#" class="social-link flex items-center gap-3 text-gray-400 hover:text-gold-400 transition-colors group">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg>
+          <span class="text-xs tracking-[0.2em] uppercase">TikTok</span>
+        </a>
+        <a href="#" class="social-link flex items-center gap-3 text-gray-400 hover:text-gold-400 transition-colors group">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span class="text-xs tracking-[0.2em] uppercase">Facebook</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ REVIEWS ══════════════════════════════════════ -->
+  <section id="reviews" class="py-24 bg-charcoal-900/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-3">Client Voices</p>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl">Reviews</h2>
+        <div class="gold-divider mx-auto mt-4"></div>
+      </div>
+
+      <!-- Barber filter tabs -->
+      <div id="review-tabs" class="flex flex-wrap justify-center gap-3 mb-12"></div>
+
+      <!-- Write a review -->
+      <div class="max-w-2xl mx-auto mb-12 border border-gold-500/20 p-6">
+        <h3 class="font-display text-xl mb-6 text-gold-400">Share Your Experience</h3>
+        <div class="space-y-4">
+          <input id="review-name" type="text" placeholder="Your Name" class="input-dark w-full" />
+          <div class="flex gap-3">
+            <select id="review-barber" class="input-dark flex-1">
+              <option value="">Select Barber</option>
+            </select>
+            <div class="flex items-center gap-1" id="star-rating">
+              <span data-val="1" class="star text-2xl cursor-pointer text-gray-600 hover:text-gold-400 transition-colors">★</span>
+              <span data-val="2" class="star text-2xl cursor-pointer text-gray-600 hover:text-gold-400 transition-colors">★</span>
+              <span data-val="3" class="star text-2xl cursor-pointer text-gray-600 hover:text-gold-400 transition-colors">★</span>
+              <span data-val="4" class="star text-2xl cursor-pointer text-gray-600 hover:text-gold-400 transition-colors">★</span>
+              <span data-val="5" class="star text-2xl cursor-pointer text-gray-600 hover:text-gold-400 transition-colors">★</span>
+            </div>
+          </div>
+          <textarea id="review-text" rows="3" placeholder="Tell us about your experience..." class="input-dark w-full resize-none"></textarea>
+          <button onclick="submitReview()" class="btn-gold text-xs tracking-[0.2em] uppercase px-8 py-3">Submit Review</button>
+        </div>
+      </div>
+
+      <!-- Reviews grid -->
+      <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div class="text-center mt-8">
+        <button id="load-more-reviews" onclick="loadMoreReviews()" class="btn-outline text-xs tracking-[0.2em] uppercase px-8 py-3 hidden">Load More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ BOOKING ══════════════════════════════════════ -->
+  <section id="booking" class="py-24">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-3">Reserve Your Seat</p>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl">Book Now</h2>
+        <div class="gold-divider mx-auto mt-4"></div>
+      </div>
+
+      <!-- Booking Steps -->
+      <div class="flex items-center justify-center gap-4 mb-12">
+        <div class="step-indicator active" data-step="1"><span>1</span><p>Details</p></div>
+        <div class="step-line"></div>
+        <div class="step-indicator" data-step="2"><span>2</span><p>Confirm</p></div>
+        <div class="step-line"></div>
+        <div class="step-indicator" data-step="3"><span>3</span><p>Payment</p></div>
+      </div>
+
+      <!-- Step 1: Booking Form -->
+      <div id="booking-step-1" class="border border-gold-500/20 p-8">
+        <div class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="label-gold">Full Name *</label>
+              <input id="book-name" type="text" placeholder="John Smith" class="input-dark w-full mt-2" />
+            </div>
+            <div>
+              <label class="label-gold">Phone Number *</label>
+              <input id="book-phone" type="tel" placeholder="+1 (555) 000-0000" class="input-dark w-full mt-2" />
+            </div>
+          </div>
+          <div>
+            <label class="label-gold">Email Address</label>
+            <input id="book-email" type="email" placeholder="john@example.com" class="input-dark w-full mt-2" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="label-gold">Select Barber *</label>
+              <select id="book-barber" class="input-dark w-full mt-2">
+                <option value="">Choose a barber</option>
+              </select>
+            </div>
+            <div>
+              <label class="label-gold">Service *</label>
+              <select id="book-service" class="input-dark w-full mt-2">
+                <option value="">Choose a service</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="label-gold">Preferred Date *</label>
+              <input id="book-date" type="date" class="input-dark w-full mt-2" />
+            </div>
+            <div>
+              <label class="label-gold">Preferred Time *</label>
+              <select id="book-time" class="input-dark w-full mt-2">
+                <option value="">Select time</option>
+                <option>09:00 AM</option><option>09:30 AM</option>
+                <option>10:00 AM</option><option>10:30 AM</option>
+                <option>11:00 AM</option><option>11:30 AM</option>
+                <option>12:00 PM</option><option>12:30 PM</option>
+                <option>01:00 PM</option><option>01:30 PM</option>
+                <option>02:00 PM</option><option>02:30 PM</option>
+                <option>03:00 PM</option><option>03:30 PM</option>
+                <option>04:00 PM</option><option>04:30 PM</option>
+                <option>05:00 PM</option><option>05:30 PM</option>
+                <option>06:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="label-gold">Special Requests</label>
+            <textarea id="book-notes" rows="3" placeholder="Any special requests or notes..." class="input-dark w-full mt-2 resize-none"></textarea>
+          </div>
+          <button onclick="proceedBooking()" class="btn-gold w-full text-sm tracking-[0.2em] uppercase py-4">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Confirmation -->
+      <div id="booking-step-2" class="hidden border border-gold-500/20 p-8">
+        <h3 class="font-display text-2xl text-gold-400 mb-6">Booking Summary</h3>
+        <div id="booking-summary" class="space-y-3 mb-8"></div>
+        <div class="flex gap-4">
+          <button onclick="goBackStep()" class="btn-outline flex-1 text-sm tracking-[0.2em] uppercase py-3">← Back</button>
+          <button onclick="confirmBooking()" class="btn-gold flex-1 text-sm tracking-[0.2em] uppercase py-3">Confirm Booking</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment -->
+      <div id="booking-step-3" class="hidden border border-gold-500/20 p-8">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 border-2 border-gold-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-gold-400 text-2xl">✓</span>
+          </div>
+          <h3 class="font-display text-2xl text-gold-400 mb-2">Booking Received!</h3>
+          <p id="booking-id-display" class="text-gray-400 text-sm"></p>
+        </div>
+
+        <div class="bg-charcoal-800/50 border border-gold-500/20 p-6 mb-6">
+          <h4 class="font-display text-lg text-gold-400 mb-4">Payment Details</h4>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between"><span class="text-gray-400">Bank Name:</span><span class="text-white font-medium">Premium Bank Ltd.</span></div>
+            <div class="flex justify-between"><span class="text-gray-400">Account Name:</span><span class="text-white font-medium">Noir Blade Barbershop</span></div>
+            <div class="flex justify-between"><span class="text-gray-400">Account Number:</span><span class="text-white font-medium">1234-5678-9012</span></div>
+            <div class="flex justify-between"><span class="text-gray-400">Routing Number:</span><span class="text-white font-medium">021000021</span></div>
+            <div class="flex justify-between border-t border-gold-500/20 pt-3 mt-3">
+              <span class="text-gray-400">Reference:</span>
+              <span id="payment-ref" class="text-gold-400 font-display font-bold"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- QR Code (static representation) -->
+        <div class="flex flex-col items-center mb-6">
+          <p class="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">Scan to Pay</p>
+          <div class="qr-placeholder border border-gold-500/40 p-3 bg-white">
+            <div class="qr-grid"></div>
+          </div>
+        </div>
+
+        <button id="whatsapp-btn" onclick="confirmViaWhatsApp()" class="w-full flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm tracking-[0.15em] uppercase py-4 transition-colors font-medium">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Confirm via WhatsApp
+        </button>
+        <p class="text-center text-xs text-gray-500 mt-4">Your booking is pending until payment is confirmed by our team.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ CONTACT ══════════════════════════════════════ -->
+  <section id="contact" class="py-24 bg-charcoal-900/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs tracking-[0.5em] uppercase mb-3">Find Us</p>
+        <h2 class="font-display text-4xl sm:text-5xl">Contact</h2>
+        <div class="gold-divider mx-auto mt-4"></div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="contact-card text-center">
+          <div class="w-12 h-12 border border-gold-500 flex items-center justify-center mx-auto mb-4 text-gold-400 text-xl">📍</div>
+          <h3 class="font-display text-lg text-gold-400 mb-2">Location</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">123 Fifth Avenue<br>Suite 400, New York, NY 10011</p>
+        </div>
+        <div class="contact-card text-center">
+          <div class="w-12 h-12 border border-gold-500 flex items-center justify-center mx-auto mb-4 text-gold-400 text-xl">⏰</div>
+          <h3 class="font-display text-lg text-gold-400 mb-2">Hours</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Mon–Fri: 9AM – 7PM<br>Sat: 8AM – 6PM<br>Sun: 10AM – 4PM</p>
+        </div>
+        <div class="contact-card text-center">
+          <div class="w-12 h-12 border border-gold-500 flex items-center justify-center mx-auto mb-4 text-gold-400 text-xl">📞</div>
+          <h3 class="font-display text-lg text-gold-400 mb-2">Contact</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">+1 (555) 247-8930<br>hello@noirblade.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
+  <footer class="border-t border-gold-500/20 py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <a href="#home" class="font-display text-3xl tracking-[0.2em] inline-block mb-4">NOIR<span class="text-gold-500"> BLADE</span></a>
+      <p class="text-gray-500 text-xs tracking-[0.2em] uppercase">© 2025 Noir Blade Barbershop · Crafted with Precision</p>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════ ADMIN LOGIN MODAL ══════════════════════════════════════ -->
+  <div id="admin-login-modal" class="hidden fixed inset-0 z-50 bg-obsidian/95 flex items-center justify-center p-4">
+    <div class="w-full max-w-md border border-gold-500/30 p-8 bg-charcoal-800 relative">
+      <button onclick="hideAdminLogin()" class="absolute top-4 right-4 text-gray-500 hover:text-gold-400 transition-colors">✕</button>
+      <h2 class="font-display text-2xl text-gold-400 mb-2 text-center">Admin Portal</h2>
+      <p class="text-gray-500 text-xs text-center tracking-[0.2em] uppercase mb-8">Authorized Personnel Only</p>
+      <div class="space-y-4">
+        <div>
+          <label class="label-gold">Email</label>
+          <input id="admin-email" type="email" class="input-dark w-full mt-2" placeholder="admin@noirblade.com" />
+        </div>
+        <div>
+          <label class="label-gold">Password</label>
+          <input id="admin-password" type="password" class="input-dark w-full mt-2" placeholder="••••••••" />
+        </div>
+        <button onclick="adminLogin()" class="btn-gold w-full text-sm tracking-[0.2em] uppercase py-3">Access Dashboard</button>
+        <p id="admin-error" class="text-red-400 text-xs text-center hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ ADMIN DASHBOARD ══════════════════════════════════════ -->
+  <div id="admin-dashboard" class="hidden fixed inset-0 z-50 bg-obsidian overflow-y-auto">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <!-- Admin Nav -->
+      <div class="flex items-center justify-between mb-8 border-b border-gold-500/20 pb-6">
+        <h1 class="font-display text-2xl text-gold-400">Dashboard</h1>
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex gap-2">
+            <button onclick="showAdminTab('bookings')" class="admin-tab active text-xs tracking-[0.15em] uppercase px-4 py-2 border border-gold-500/30 text-gold-400">Bookings</button>
+            <button onclick="showAdminTab('reviews')" class="admin-tab text-xs tracking-[0.15em] uppercase px-4 py-2 border border-gray-700 text-gray-400 hover:border-gold-500/30 hover:text-gold-400 transition-colors">Reviews</button>
+            <button onclick="showAdminTab('barbers')" class="admin-tab text-xs tracking-[0.15em] uppercase px-4 py-2 border border-gray-700 text-gray-400 hover:border-gold-500/30 hover:text-gold-400 transition-colors">Barbers</button>
+          </div>
+          <button onclick="adminLogout()" class="text-xs tracking-[0.15em] text-gray-500 hover:text-red-400 uppercase transition-colors">Logout</button>
+        </div>
+      </div>
+
+      <!-- Mobile tabs -->
+      <div class="flex sm:hidden gap-2 mb-6">
+        <button onclick="showAdminTab('bookings')" class="admin-tab active flex-1 text-xs tracking-[0.1em] uppercase py-2 border border-gold-500/30 text-gold-400">Bookings</button>
+        <button onclick="showAdminTab('reviews')" class="admin-tab flex-1 text-xs tracking-[0.1em] uppercase py-2 border border-gray-700 text-gray-400">Reviews</button>
+        <button onclick="showAdminTab('barbers')" class="admin-tab flex-1 text-xs tracking-[0.1em] uppercase py-2 border border-gray-700 text-gray-400">Barbers</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="stat-card"><p class="text-xs text-gray-400 tracking-[0.15em] uppercase mb-1">Total Bookings</p><p id="stat-total" class="font-display text-3xl text-gold-400">0</p></div>
+        <div class="stat-card"><p class="text-xs text-gray-400 tracking-[0.15em] uppercase mb-1">Pending</p><p id="stat-pending" class="font-display text-3xl text-yellow-400">0</p></div>
+        <div class="stat-card"><p class="text-xs text-gray-400 tracking-[0.15em] uppercase mb-1">Confirmed</p><p id="stat-confirmed" class="font-display text-3xl text-green-400">0</p></div>
+        <div class="stat-card"><p class="text-xs text-gray-400 tracking-[0.15em] uppercase mb-1">Reviews</p><p id="stat-reviews" class="font-display text-3xl text-gold-400">0</p></div>
+      </div>
+
+      <!-- Bookings Tab -->
+      <div id="admin-bookings" class="admin-panel">
+        <div class="flex flex-col sm:flex-row gap-4 mb-6">
+          <input id="admin-search" oninput="filterAdminBookings()" type="text" placeholder="Search bookings..." class="input-dark flex-1" />
+          <select id="admin-filter-status" onchange="filterAdminBookings()" class="input-dark sm:w-48">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div id="admin-bookings-list" class="space-y-3"></div>
+      </div>
+
+      <!-- Reviews Tab -->
+      <div id="admin-reviews" class="admin-panel hidden">
+        <div id="admin-reviews-list" class="space-y-3"></div>
+      </div>
+
+      <!-- Barbers Tab -->
+      <div id="admin-barbers-panel" class="admin-panel hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="admin-barbers-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 z-[100] bg-charcoal-800 border border-gold-500/40 text-white text-sm px-6 py-4 shadow-2xl transition-all duration-300">
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
