@@ -1,0 +1,336 @@
+/* ════════════════════════════════════════════════════════
+   NOIR BLADE — PREMIUM BARBERSHOP — GLOBAL STYLES
+════════════════════════════════════════════════════════ */
+
+:root {
+  --gold: #c9a227;
+  --gold-light: #f0c040;
+  --gold-dim: rgba(201,162,39,0.15);
+  --obsidian: #0a0a0a;
+  --charcoal: #1a1a1a;
+  --charcoal-dark: #111111;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body { background-color: var(--obsidian); color: #fff; font-family: 'Montserrat', sans-serif; }
+
+::selection { background: var(--gold); color: #000; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--obsidian); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ════════ NAVBAR ════════ */
+#navbar { background: transparent; }
+#navbar.scrolled {
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,162,39,0.15);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+/* ════════ HERO ════════ */
+.hero-bg {
+  background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1920&q=80');
+  background-size: cover;
+  background-position: center 30%;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ════════ GOLD DIVIDER ════════ */
+.gold-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin-top: 1rem;
+}
+
+/* ════════ BUTTONS ════════ */
+.btn-gold {
+  display: inline-block;
+  background: var(--gold);
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--gold);
+  text-align: center;
+  text-decoration: none;
+}
+.btn-gold:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201,162,39,0.3);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.3);
+  text-align: center;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* ════════ SERVICES GRID ════════ */
+.service-card {
+  background: var(--charcoal);
+  padding: 2.5rem;
+  border: 1px solid rgba(201,162,39,0.1);
+  transition: all 0.4s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform 0.4s ease;
+}
+.service-card:hover { border-color: rgba(201,162,39,0.4); transform: translateY(-4px); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.service-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+.service-desc { font-size: 0.75rem; color: #888; line-height: 1.6; margin-bottom: 1rem; }
+.service-price { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); }
+.service-duration { font-size: 0.65rem; color: #666; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.25rem; }
+
+/* ════════ BARBER CARDS ════════ */
+.barber-card {
+  border: 1px solid rgba(201,162,39,0.15);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  background: var(--charcoal);
+}
+.barber-card:hover { border-color: rgba(201,162,39,0.5); transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.barber-avatar {
+  width: 100%; padding-top: 120%;
+  position: relative; overflow: hidden;
+}
+.barber-avatar-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; font-family: 'Cinzel', serif; color: var(--gold);
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #111 100%);
+  transition: transform 0.4s ease;
+}
+.barber-card:hover .barber-avatar-inner { transform: scale(1.05); }
+.barber-info { padding: 1.5rem; }
+.barber-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.25rem; }
+.barber-specialty { font-size: 0.65rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.barber-stars { color: var(--gold); font-size: 0.9rem; }
+
+/* ════════ GALLERY ════════ */
+.gallery-item { overflow: hidden; cursor: pointer; }
+.gallery-art { width: 100%; height: 100%; transition: transform 0.6s ease; }
+.gallery-item:hover .gallery-art { transform: scale(1.05); }
+
+.art-1 { background: linear-gradient(135deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%); position: relative; }
+.art-1::after { content: '✂'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4rem; opacity: 0.2; color: var(--gold); }
+
+.art-2 { background: linear-gradient(160deg, #0f0f0f, #2a1f00, #1a1a1a); position: relative; }
+.art-2::after { content: '💈'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 6rem; opacity: 0.3; }
+
+.art-3 { background: linear-gradient(45deg, #111, #1a1500, #111); position: relative; }
+.art-3::after { content: '🪒'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4rem; opacity: 0.2; color: var(--gold); }
+
+.art-4 { background: radial-gradient(circle at center, #1e1800, #0a0a0a); position: relative; }
+.art-4::after { content: '👑'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4rem; opacity: 0.25; }
+
+/* ════════ REVIEW CARDS ════════ */
+.review-card {
+  border: 1px solid rgba(201,162,39,0.1);
+  padding: 1.5rem;
+  background: var(--charcoal);
+  position: relative;
+  transition: border-color 0.3s;
+}
+.review-card:hover { border-color: rgba(201,162,39,0.3); }
+.review-card::before { content: '"'; position: absolute; top: 0.5rem; right: 1rem; font-size: 4rem; color: rgba(201,162,39,0.1); font-family: 'Cormorant Garamond', serif; line-height: 1; }
+.review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.75rem; }
+.review-text { font-size: 0.85rem; color: #ccc; line-height: 1.7; margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+.review-author { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; }
+.review-barber-tag { font-size: 0.65rem; color: #555; margin-top: 0.25rem; }
+
+/* ════════ REVIEW TABS ════════ */
+.review-tab {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(201,162,39,0.2);
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: #777; cursor: pointer; transition: all 0.3s;
+  font-family: 'Montserrat', sans-serif;
+  background: transparent;
+}
+.review-tab:hover, .review-tab.active { border-color: var(--gold); color: var(--gold); }
+
+/* ════════ INPUTS ════════ */
+.input-dark {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.input-dark:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,162,39,0.1); }
+.input-dark option { background: var(--charcoal); color: #fff; }
+.input-dark::placeholder { color: #555; }
+
+.label-gold {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ════════ STEP INDICATORS ════════ */
+.step-indicator {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+}
+.step-indicator span {
+  width: 2rem; height: 2rem; border: 1px solid #333;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; color: #555; transition: all 0.3s;
+  font-family: 'Cinzel', serif;
+}
+.step-indicator p { font-size: 0.6rem; color: #444; letter-spacing: 0.15em; text-transform: uppercase; }
+.step-indicator.active span { border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.1); }
+.step-indicator.active p { color: var(--gold); }
+.step-indicator.done span { background: var(--gold); color: #000; border-color: var(--gold); }
+.step-line { flex: 1; height: 1px; background: #222; min-width: 40px; max-width: 80px; }
+
+/* ════════ QR CODE ════════ */
+.qr-placeholder { display: inline-block; }
+.qr-grid {
+  width: 120px; height: 120px;
+  background: 
+    linear-gradient(90deg, #000 2px, transparent 2px) 0 0 / 10px 10px,
+    linear-gradient(#000 2px, transparent 2px) 0 0 / 10px 10px;
+  image-rendering: pixelated;
+  position: relative;
+}
+.qr-grid::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    conic-gradient(at 0% 0%, #000 25%, transparent 0) 0 0 / 30px 30px,
+    conic-gradient(at 100% 0%, transparent 75%, #000 0) 90px 0 / 30px 30px,
+    conic-gradient(at 0% 100%, transparent 25%, #000 0) 0 90px / 30px 30px;
+}
+
+/* ════════ CONTACT CARDS ════════ */
+.contact-card {
+  border: 1px solid rgba(201,162,39,0.1);
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+}
+.contact-card:hover { border-color: rgba(201,162,39,0.4); background: rgba(201,162,39,0.03); }
+
+/* ════════ SOCIAL LINKS ════════ */
+.social-link { transition: all 0.3s ease; }
+.social-link:hover { transform: translateY(-2px); }
+
+/* ════════ ADMIN DASHBOARD ════════ */
+.stat-card {
+  background: var(--charcoal);
+  border: 1px solid rgba(201,162,39,0.1);
+  padding: 1.5rem;
+}
+
+.admin-booking-row {
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 1rem 1.25rem;
+  background: var(--charcoal);
+  transition: border-color 0.2s;
+}
+.admin-booking-row:hover { border-color: rgba(201,162,39,0.2); }
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem; font-weight: 600;
+}
+.status-pending { background: rgba(234,179,8,0.15); color: #eab308; border: 1px solid rgba(234,179,8,0.3); }
+.status-confirmed { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+.status-cancelled { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+
+.admin-action-btn {
+  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.25rem 0.75rem; border: 1px solid;
+  cursor: pointer; transition: all 0.2s; font-family: 'Montserrat', sans-serif;
+  background: transparent;
+}
+.btn-confirm { border-color: rgba(34,197,94,0.4); color: #22c55e; }
+.btn-confirm:hover { background: rgba(34,197,94,0.1); }
+.btn-cancel { border-color: rgba(239,68,68,0.3); color: #ef4444; }
+.btn-cancel:hover { background: rgba(239,68,68,0.1); }
+.btn-delete { border-color: rgba(239,68,68,0.3); color: #ef4444; }
+.btn-delete:hover { background: rgba(239,68,68,0.1); }
+.btn-approve { border-color: rgba(201,162,39,0.4); color: var(--gold); }
+.btn-approve:hover { background: rgba(201,162,39,0.1); }
+
+/* ════════ BARBER MODAL ════════ */
+.modal-barber-header {
+  display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.modal-avatar {
+  width: 120px; height: 140px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; background: linear-gradient(135deg, #111, #1a1a1a);
+  border: 1px solid rgba(201,162,39,0.3);
+  font-family: 'Cinzel', serif; color: var(--gold);
+}
+
+/* ════════ HAMBURGER ANIMATION ════════ */
+#hamburger.open .ham-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+#hamburger.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#hamburger.open .ham-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); width: 1.5rem; }
+
+/* ════════ TOAST ════════ */
+#toast { border-left: 3px solid var(--gold); }
+#toast.show { display: block !important; }
+
+/* ════════ LOADING SPINNER ════════ */
+.spinner {
+  width: 20px; height: 20px; border: 2px solid rgba(201,162,39,0.2);
+  border-top-color: var(--gold); border-radius: 50%;
+  animation: spin 0.7s linear infinite; display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ════════ RESPONSIVE ════════ */
+@media (max-width: 640px) {
+  #home h1 { font-size: 4.5rem; }
+  .modal-avatar { width: 90px; height: 100px; font-size: 3rem; }
+}
